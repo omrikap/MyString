@@ -4,6 +4,7 @@ project(MyString)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99")
 
 set(SOURCE_FILES
-    MyString.h)
+    MyString.h
+    MyString.c)
 
 add_executable(MyString ${SOURCE_FILES} MyString.c)
