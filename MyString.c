@@ -14,23 +14,34 @@
 // -------------------------- const definitions -------------------------
 #define END_OF_STRING '\0'
 
-#define CYCLIC_MOD (isCyclic == 1)
+#define CYCLIC_MOD (isCyclic != 0)
 //#define NOT_CYCLIC_MOD (isCyclic == 0) todo remove
 
 // ------------------------------ functions -----------------------------
-/* general flow todo remove
- * 1. if str2 == 0 or str1 == 0, return 0.
- * 	non cyclic:
- * 1. for char in str1, check if the rest also equal
- * 2. if 2 chars aren't equal:
- * 3. if str1 end before str2, return 0.
- * 4. if str2 end counter ++.
+/**
+ *
  */
+unsigned int stringCompare(const char *subStr1, const char *str2)
+{
+	puts("we're in!"); // todo remove
+	for ( ; *subStr1 == *str2; subStr1++, str2++)
+	{
+		printf("subStr1 = %c, str2 = %c\n", *subStr1, *str2); // todo remove
+		if (*str2 == END_OF_STRING)
+		{
+			printf("return 1\n"); // todo remove
+			return 1;
+		}
+
+	}
+	printf("return 0\n"); // todo remove
+	return 0;
+}
 
 /**
  *
  */
-unsigned int cyclicMode() // todo
+unsigned int cyclicMode(const char* str1, const char* str2) // todo
 {
 	printf("cyclic mod\n");
 	return 0;
@@ -39,10 +50,25 @@ unsigned int cyclicMode() // todo
 /**
  * @brief
  */
-unsigned int notCyclicMode()
+unsigned int notCyclicMode(const char* str1, const char* str2)
 {
-	printf("non cyclic mod\n");
-	return 0;
+	printf("non cyclic mod\n"); // todo remove
+	unsigned int subStrCounter = 0;
+	for ( ;*str1; str1++)
+	{
+		if (*str1 == *str2)
+		{
+			subStrCounter += stringCompare(str1, str2);
+		}
+
+		putchar(*str1);
+		putchar('\n');
+//		putchar(*str2);
+//		putchar('\n');
+//		putchar(*str2);
+//		putchar('\n');
+	}
+	return subStrCounter;
 }
 
 unsigned int countSubStr(const char* str1, const char* str2, int isCyclic)
@@ -53,19 +79,19 @@ unsigned int countSubStr(const char* str1, const char* str2, int isCyclic)
 	}
 	else if (CYCLIC_MOD)
 	{
-		return cyclicMode();
+		return cyclicMode(str1, str2);
 	}
 	else
 	{
-		return notCyclicMode();
+		return notCyclicMode(str1, str2);
 	}
 }
 
 int main()
 {
-	char *str1 = "hi";
+	char *str1 = "hi all";
 	char *str2 = "all";
-	int i = countSubStr(str1, str2, 1);
-	int j = countSubStr(str1, str2, 0);
+	countSubStr(str1, str2, 17);
+	countSubStr(str1, str2, 0);
 	return 0;
 }
