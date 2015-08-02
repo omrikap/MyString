@@ -20,13 +20,13 @@
 /**
  *
  */
-unsigned int stringCompare(const char** subStr1, const char* str2)
+unsigned int stringCompare(const char* subStr1, const char* str2)
 {
 	puts("we're in!"); // todo remove
-	for ( ; **subStr1 == *str2; ++*subStr1, ++str2) // todo refine logic
+	for ( ; *subStr1 == *str2; ++subStr1, ++str2) // todo refine logic
 	{
-		printf("subStr1 = %c, str2 = %c\n", **subStr1, *str2); // todo remove
-		if (**subStr1 == END_OF_STRING)
+		printf("subStr1 = %c, str2 = %c\n", *subStr1, *str2); // todo remove
+		if (*subStr1 == END_OF_STRING)
 		{
 			break;
 		}
@@ -54,20 +54,16 @@ unsigned int cyclicMode(const char* str1, const char* str2) // todo
 /**
  * @brief
  */
-unsigned int notCyclicMode(const char** str1, const char* str2)
+unsigned int notCyclicMode(const char* str1, const char* str2)
 {
 	printf("non cyclic mod\n"); // todo remove
 	unsigned int subStrCounter = 0;
-	for ( ;**str1; ++*str1)
+	for ( ;*str1; ++str1)
 	{
-		printf("**str1: %c\n", **str1);
-		if (**str1 == *str2)
+		if (*str1 == *str2)
 		{
 			subStrCounter += stringCompare(str1, str2);
-			printf("subStrCounter = %i\n", subStrCounter); // todo remove
-			printf("**str1: %c\n", **str1);
 		}
-		printf("subStrCounter = %i\n", subStrCounter); // todo remove
 	}
 //	printf("subStrCounter = %i", subStrCounter); // todo remove
 	return subStrCounter;
@@ -105,15 +101,15 @@ unsigned int countSubStr(const char* str1, const char* str2, int isCyclic)
 
 int main()
 {
-	char *str1 = "abcdefg";
-	char *str2 = "abc";
+	char *str1 = "aaabcdefg";
+	char *str2 = "aa";
 	const char *thisStr1 = str1;
-//	int j = stringCompare(&thisStr1, str2);
-	int j = notCyclicMode(&thisStr1, str2);
+//	int j = stringCompare(thisStr1, str2);
+	int j = notCyclicMode(thisStr1, str2);
 	printf("*thisStr1: %c\n", *thisStr1);
 //	countSubStr(str1, str2, 17);
 //	int i = countSubStr(str1, str2, 0);
 
-//	printf("j = %i", j);
+	printf("j = %i", j);
 	return 0;
 }
