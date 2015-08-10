@@ -1,36 +1,38 @@
-	/**
- * @file MyString.c
- * @author  Omri Kaplan
- * @date 28 Jul 2015
- *
- * @brief todo
- *
- * @section DESCRIPTION
- * todo
- */
+/**
+* @file MyString.c
+* @author  Omri Kaplan
+* @date 9 Aug 2015
+*
+* @brief MyString
+*
+* @section DESCRIPTION
+* A small program that finds appearances of a string in another string.
+*/
 // ------------------------------ includes ------------------------------
 #include "MyString.h"
 
 // -------------------------- const definitions -------------------------
 #define END_OF_STRING '\0'
+#define NOT_FOUND 0
+#define FOUND 1
 
 // ------------------------------ functions -----------------------------
 /**
- * @brief
+ * @brief Search in cyclic mod.
+ * @param A pointer to the first string.
+ * @param A pointer to the second string.
  */
 unsigned int cyclicMode(const char* str1, const char* str2);
 
 /**
- * @brief
+ * @brief Compares two strings
+ * @param A pointer to the first string.
+ * @param A pointer to the second string.
+ * @param The search mod (cyclic or not).
+ * @param The head of the original first string.
  */
 unsigned int stringCompare(const char *subStr1, const char *str2, int isCyclic,
 						   const char *headStr1);
-
-/**
- * @brief
- */
-unsigned int countSubStr(const char* str1, const char* str2, int isCyclic);
-
 
 unsigned int cyclicMode(const char* str1, const char* str2)
 {
@@ -48,17 +50,17 @@ unsigned int stringCompare(const char *subStr1, const char *str2, int isCyclic,
 		}
 		else if (*subStr1 != *str2)
 		{
-			return 0;
+			return NOT_FOUND;
 		}
 	}
-	return 1;
+	return FOUND;
 }
 
 unsigned int countSubStr(const char* str1, const char* str2, int isCyclic)
 {
 	if (*str1 == END_OF_STRING || *str2 == END_OF_STRING)
 	{
-		return 0;
+		return NOT_FOUND;
 	}
 	unsigned int subStrCounter = 0;
 	const char * headStr1 = str1;
@@ -73,7 +75,7 @@ unsigned int countSubStr(const char* str1, const char* str2, int isCyclic)
 }
 
 /*
- * @brief This main method is just a driver. It
+ * @brief This main method is just a driver to test the code.
  */
 int main()
 {
