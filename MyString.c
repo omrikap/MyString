@@ -64,7 +64,7 @@ unsigned int countSubStr(const char* str1, const char* str2, int isCyclic)
 	}
 	unsigned int subStrCounter = 0;
 	const char * headStr1 = str1;
-	for ( ;*str1; ++str1)
+	for ( ; *str1; ++str1)
 	{
 		if (*str1 == *str2)
 		{
@@ -74,7 +74,7 @@ unsigned int countSubStr(const char* str1, const char* str2, int isCyclic)
 	return subStrCounter;
 }
 
-/*
+/**
  * @brief This main method is just a driver to test the code.
  */
 int main()
